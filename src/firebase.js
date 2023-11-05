@@ -1,16 +1,20 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getDatabase } from 'firebase/database';
+
 
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID'
+  apiKey: "AIzaSyCY0_TglStMJ760zG_Dc4npjxtw_sPCeQc",
+  authDomain: "project-web-kelas-1d06e.firebaseapp.com",
+  databaseURL: "https://project-web-kelas-1d06e-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "project-web-kelas-1d06e",
+  storageBucket: "project-web-kelas-1d06e.appspot.com",
+  messagingSenderId: "907184674408",
+  appId: "1:907184674408:web:9bfe7fa2f01700e47a0ddd",
+  measurementId: "G-HYYK9152FQ"
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const database = getFirestore(app);
 
-export { db };
+export default database;

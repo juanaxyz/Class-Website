@@ -2,7 +2,6 @@ import "./App.css"
 import Background from "../image/bg.jpeg"
 import InstaLogo from "../image/instagram.svg"
 import Chat from "../image/chat.svg"
-import MessageForm from "./message"
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,10 +17,50 @@ import Image_Slide1 from "../image/image1.jpeg"
 import Image_Slide2 from "../image/image2.jpeg"
 import Image_Slide3 from "../image/image3.jpeg"
 import Image_Slide4 from "../image/image4.jpeg"
+import { useState } from "react"
+
+
+import Swal from "sweetalert2";
+import db from "../firebase";
+import {doc, setDoc} from "firebase/firestore"
+import { ref, set ,onValue} from "firebase/database";
+// pop up message
+
+function SendMessagePopUp(){
+  
+
+  Swal.fire({
+    title: "Kirim Pesan",
+    html : '<input type="text" id="NameTo" placeholder="Untuk Siapa ?" autoComplete="off" class="swal2-input"> <input type="text" id="NameFrom" placeholder="dari Siapa ?" autoComplete="off" class="swal2-input"> <input type="textArea" id="Message" placeholder="Pesan Anda" autoComplete="off" class="swal2-input">',
+    confirmButtonText: "Kirim",
+    focusConfirm: false,
+    preConfirm: ()=> {
+      const NameTo = Swal.getPopup().querySelector("#NameTo").value
+      const NameFrom = Swal.getPopup().querySelector("#NameFrom").value
+      const Message = Swal.getPopup().querySelector("#Message").value
+      if (!NameTo || !NameFrom || !Message) {
+        Swal.showValidationMessage(`Mohon Mengisi Pesan Terlebih Dahulu`)
+      }
+
+      return {NameTo : NameTo,NameFrom : NameFrom,Message : Message}
+    }
+  }).then(async (result)=>{
+    await setDoc(doc(db,"Menfess", "menfess-id"),{
+        NameTo: result.value.NameTo,
+        NameFrom : result.value.NameFrom,
+        Message : result.value.Message
+    })
+  })
+
+
+  
+}
 
 function App(){
+    
     return(
         <>
+
         <div className="bg bg-gradient-to-b from-sky-900 to-black">
         
             <div className="container flex justify-center items-center t-0">
@@ -37,12 +76,12 @@ function App(){
                         Our Instagram Class
                     </h2>
                 </a>
-                <a className="card" href="#">
+                <div className="card cursor-pointer" href="#" onClick={()=> SendMessagePopUp()}>
                     <img src={Chat} alt="Anonymous Chat" className="w-1/4 m-1"/>
                     <h2 className="text-xl md:text-4xl m-1">
                         Send Anonym Message
                     </h2>
-                </a>
+                </div>
             </div>
 
             {/* galery */}
@@ -113,7 +152,6 @@ function App(){
             </div>
         </div>
 
-            <MessageForm/>
         </>
     )
 }
