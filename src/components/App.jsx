@@ -2,6 +2,7 @@ import "./App.css"
 import Background from "../image/bg.jpeg"
 import InstaLogo from "../image/instagram.svg"
 import Chat from "../image/chat.svg"
+import MessageForm from "./message"
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -23,8 +24,8 @@ function App(){
         <>
         <div className="bg bg-gradient-to-b from-sky-900 to-black">
         
-            <div className="container flex justify-center items-center">
-                <h1 className="font-mono text-5xl md:text-7xl lg:text-8xl text-white absolute">XII MIPA 2</h1>
+            <div className="container flex justify-center items-center t-0">
+                <h1 className="font-poppins text-6xl md:text-7xl lg:text-9xl text-white font-extrabold absolute ">XII MIPA 2</h1>
                 <img src={Background} alt="Foto Bersama" className="w-full"/>
 
                 {/* glassmorphism card */}
@@ -46,7 +47,7 @@ function App(){
 
             {/* galery */}
             <div className="container">
-                        <h1 className="heading text-white font-sans font-bold">OUR MOMENTS</h1>
+                        <h1 className="heading text-white font-sans font-bold">WE ARE MIPA 2</h1>
                         <Swiper
                             effect={'coverflow'}
                             grabCursor={true}
@@ -93,7 +94,26 @@ function App(){
                         </Swiper>
                     </div> 
                 
+        {/* Menfess */}
+
+            <div className="container">
+                <div className="header bg-indigo-300 w-full h-fit">
+                    <h2 className="text-5xl md:text-7xl text-white font-sans font-extrabold text-center py-2">PESAN KITA</h2>
+                </div>
+                <div className="Menfess-content grid grid-cols-2 gap-2 place-items-center py-3">
+                    <div className="Message-Card p-2">
+                        <span className="font-sans text-5xl md:text-7xl font-extrabold">Nama</span>
+                        <p className="font-sans text-2xl md:text-3xl">Lorem ipsu</p>
+                    </div>
+                    <div className="Message-Card p-2">
+                        <span className="font-sans text-5xl md:text-7xl font-extrabold">Nama</span>
+                        <p className="font-sans text-2xl md:text-3xl">Lorem ipsu</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+            <MessageForm/>
         </>
     )
 }

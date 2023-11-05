@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap'); */
+
 .card{
     @apply relative h-[150px] w-[100px] md:h-[300px] md:w-[200px] bg-white/10  z-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-2xl -mt-10 mx-2 
 }
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+.Message-Card{
+    @apply relative aspect-square w-[150px] md:w-[300px] bg-white/30  z-10 backdrop-filter backdrop-blur-lg rounded-2xl 
+
+}
+ 
