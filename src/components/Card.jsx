@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
-import "./card.css";
 import db from "../firebase";
 
 function Card() {
