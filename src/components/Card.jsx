@@ -24,7 +24,7 @@ function Card() {
   return (
     <div>
       {menfessData.map((data) => (
-        <div key={data.id} className="Message-Card p-2 my-5 w-[200px]">
+        <div key={data.id} className="p-2 my-5 w-[200px] relative bg-white/30  z-10 backdrop-filter backdrop-blur-lg rounded-2xl">
           <span className="font-sans text-4xl md:text-5xl font-extrabold">
             From {data.NameFrom}
           </span>
