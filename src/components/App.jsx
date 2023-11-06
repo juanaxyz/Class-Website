@@ -22,13 +22,13 @@ import { useState } from "react"
 
 import Swal from "sweetalert2";
 import db from "../firebase";
-import {doc, setDoc} from "firebase/firestore"
-import { ref, set ,onValue} from "firebase/database";
-// pop up message
+import {getDocs,addDoc, doc, onSnapshot, collection} from "firebase/firestore"
+import Card from "./Card";
 
-function SendMessagePopUp(){
-  
+//  kirim data message
 
+async function SendMessagePopUp(){
+    
   Swal.fire({
     title: "Kirim Pesan",
     html : '<input type="text" id="NameTo" placeholder="Untuk Siapa ?" autoComplete="off" class="swal2-input"> <input type="text" id="NameFrom" placeholder="dari Siapa ?" autoComplete="off" class="swal2-input"> <input type="textArea" id="Message" placeholder="Pesan Anda" autoComplete="off" class="swal2-input">',
@@ -45,19 +45,19 @@ function SendMessagePopUp(){
       return {NameTo : NameTo,NameFrom : NameFrom,Message : Message}
     }
   }).then(async (result)=>{
-    await setDoc(doc(db,"Menfess", "menfess-id"),{
+    const DocRef =  await addDoc(collection(db,"Menfess"),{
         NameTo: result.value.NameTo,
         NameFrom : result.value.NameFrom,
         Message : result.value.Message
-    })
-  })
+    });
+});
 
-
-  
 }
+ 
+ 
 
 function App(){
-    
+
     return(
         <>
 
@@ -65,7 +65,7 @@ function App(){
         
             <div className="container flex justify-center items-center t-0">
                 <h1 className="font-poppins text-6xl md:text-7xl lg:text-9xl text-white font-extrabold absolute ">XII MIPA 2</h1>
-                <img src={Background} alt="Foto Bersama" className="w-full"/>
+                <img src={Background} alt="Foto Bersama" className="h-[50vh]"/>
 
                 {/* glassmorphism card */}
             </div>
@@ -137,21 +137,14 @@ function App(){
 
             <div className="container">
                 <div className="header bg-indigo-300 w-full h-fit">
-                    <h2 className="text-5xl md:text-7xl text-white font-sans font-extrabold text-center py-2">PESAN KITA</h2>
+                    <h2 className="text-5xl md:text-7xl text-white font-sans font-extrabold text-center py-2">PESAN</h2>
                 </div>
-                <div className="Menfess-content grid grid-cols-2 gap-2 place-items-center py-3">
-                    <div className="Message-Card p-2">
-                        <span className="font-sans text-5xl md:text-7xl font-extrabold">Nama</span>
-                        <p className="font-sans text-2xl md:text-3xl">Lorem ipsu</p>
-                    </div>
-                    <div className="Message-Card p-2">
-                        <span className="font-sans text-5xl md:text-7xl font-extrabold">Nama</span>
-                        <p className="font-sans text-2xl md:text-3xl">Lorem ipsu</p>
-                    </div>
+                <div className="flex justify-center py-3">
+                    <Card/>
                 </div>
             </div>
         </div>
-
+            
         </>
     )
 }
