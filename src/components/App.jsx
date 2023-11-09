@@ -1,11 +1,11 @@
 import "./App.css"
-import Background from "../image/bg.jpeg"
+import Background from "../image/bg.jpg"
 import InstaLogo from "../image/instagram.svg"
 import Chat from "../image/chat.svg"
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -72,7 +72,11 @@ function App(){
         <div className="bg bg-gradient-to-b from-sky-900 to-black">
         
             <div className="container flex justify-center items-center t-0">
-                <h1 className="font-poppins text-6xl md:text-7xl lg:text-9xl text-white font-extrabold absolute ">XII MIPA 2</h1>
+                <svg className="w-full h-full font-header absolute">
+                    <text x="50%" y="50%" dy=".35em" textAnchor="middle" className="animate-[stroke_5s_infinite_alternate] stroke-2 stroke-[#365FA0] text-[10vh] font-black">
+                        XII MIPA 2
+                    </text>
+                </svg>
                 <img src={Background} alt="Foto Bersama" className="h-[50vh]"/>
 
                 {/* glassmorphism card */}
@@ -80,13 +84,13 @@ function App(){
             <div className="container-card flex justify-center ">
                 <a className="card" href="https://instagram.com/satantaksoe">
                     <img src={InstaLogo} alt="instagram" className="w-1/4 m-1"/>
-                    <h2 className="text-xl md:text-4xl m-1">
+                    <h2 className="text-3xl font-bold md:text-4xl m-1">
                         Our Instagram Class
                     </h2>
                 </a>
                 <div className="card cursor-pointer" href="#" onClick={()=> SendMessagePopUp()}>
                     <img src={Chat} alt="Anonymous Chat" className="w-1/4 m-1"/>
-                    <h2 className="text-xl md:text-4xl m-1">
+                    <h2 className="text-3xl font-bold md:text-4xl m-1">
                         Send Anonym Message
                     </h2>
                 </div>
@@ -100,6 +104,10 @@ function App(){
                             grabCursor={true}
                             centeredSlides={true}
                             loop={true}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: false,
+                              }}
                             slidesPerView={'auto'}
                             coverflowEffect={{
                             rotate: 0,
@@ -113,7 +121,7 @@ function App(){
                             prevEl: '.swiper-button-prev',
                             clickable: true,
                             }}
-                            modules={[EffectCoverflow, Pagination, Navigation]}
+                            modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                             className="swiper_container">
 
                             <SwiperSlide>
@@ -168,7 +176,7 @@ function App(){
         {/* Menfess */}
 
             <div className="container">
-                <div className="header bg-indigo-300 w-full h-fit">
+                <div className="header ">
                     <h2 className="text-5xl md:text-7xl text-white font-sans font-extrabold text-center py-2">PESAN</h2>
                 </div>
                 <div className="flex justify-center py-3">

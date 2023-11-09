@@ -23,11 +23,11 @@ function Card() {
   return (
     <div>
       {menfessData.map((data) => (
-        <div key={data.id} className="p-2 my-5 w-[200px] relative bg-white/30  z-10 backdrop-filter backdrop-blur-lg rounded-2xl">
+        <div key={data.id} className="p-2 my-5 w-[200px] relative bg-white/30  z-10 backdrop-filter backdrop-blur-lg rounded-2xl text-white">
           <span className="font-sans text-4xl md:text-5xl font-extrabold">
-            From {data.NameFrom}
+            From <span className="text-sky-500">{data.NameFrom}</span>
           </span>
-          <p className="font-sans text-3xl md:text-4xl font-bold">To {data.NameTo}</p>
+          <p className="font-sans text-3xl md:text-4xl font-bold">To <span className="text-blue-300">{data.NameTo}</span></p>
           <p className="font-sans text-2xl md:text-3xl">{data.Message}</p>
         </div>
       ))}
