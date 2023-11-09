@@ -14,9 +14,17 @@ import 'swiper/css/navigation';
 
 
 import Image_Slide1 from "../image/image1.jpeg"
-import Image_Slide2 from "../image/image2.jpeg"
-import Image_Slide3 from "../image/image3.jpeg"
-import Image_Slide4 from "../image/image4.jpeg"
+import Image_Slide2 from "../image/image2.jpg"
+import Image_Slide3 from "../image/image3.jpg"
+import Image_Slide4 from "../image/image4.jpg"
+import Image_Slide5 from "../image/image5.jpg"
+import Image_Slide6 from "../image/image6.jpg"
+import Image_Slide7 from "../image/image7.jpg"
+import Image_Slide8 from "../image/image8.jpg"
+import Image_Slide9 from "../image/image9.jpg"
+import Image_Slide10 from "../image/image10.jpg"
+import Image_Slide11 from "../image/image11jpg"
+import Image_Slide12 from "../image/image12.jpg"
 import { useState } from "react"
 
 
@@ -119,6 +127,30 @@ function App(){
                             </SwiperSlide>
                             <SwiperSlide>
                             <img src={Image_Slide4} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide5} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide6} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide7} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide8} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide9} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide10} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide11} alt="slide_image" />
+                            </SwiperSlide>  
+                            <SwiperSlide>
+                            <img src={Image_Slide12} alt="slide_image" />
                             </SwiperSlide>  
 
                             <div className="slider-controler">
