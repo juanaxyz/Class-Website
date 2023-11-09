@@ -23,7 +23,7 @@ import Image_Slide7 from "../image/image7.jpg"
 import Image_Slide8 from "../image/image8.jpg"
 import Image_Slide9 from "../image/image9.jpg"
 import Image_Slide10 from "../image/image10.jpg"
-import Image_Slide11 from "../image/image11jpg"
+import Image_Slide11 from "../image/image11.jpg"
 import Image_Slide12 from "../image/image12.jpg"
 import { useState } from "react"
 
