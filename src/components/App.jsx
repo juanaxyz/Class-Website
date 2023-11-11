@@ -81,16 +81,16 @@ function App(){
         
             <div className="container flex justify-center items-center t-0">
                 <svg className="w-full h-full font-header absolute" data-aos="fade-up">
-                    <text x="50%" y="50%" dy=".35em" textAnchor="middle" className="animate-[stroke_5s_infinite_alternate] stroke-2 stroke-[#365FA0] text-[10vh] font-black">
+                    <text x="50%" y="50%" dy=".35em" textAnchor="middle" className="animate-[stroke_5s_infinite_alternate] stroke-2 stroke-[#365FA0] text-[8vh]  font-black">
                         XII MIPA 2
                     </text>
                 </svg>
-                <img src={Background} alt="Foto Bersama" className="h-[50vh] border-2 border-red-500 bg-cover"/>
+                <img src={Background} alt="Foto Bersama" className="h-full md:h-[50vh]  bg-cover"/>
 
                 {/* glassmorphism card */}
             </div>
             <div className="container-card flex justify-center ">
-                <a className="card" href="https://instagram.com/satantaksoe" data-aos="fade-up">
+                <a className="card glow" href="https://instagram.com/satantaksoe" data-aos="fade-up">
                     <img src={InstaLogo} alt="instagram" className="w-1/4 m-1"/>
                     <h2 className="text-3xl font-bold md:text-4xl m-1">
                         Our Instagram Class
@@ -113,7 +113,7 @@ function App(){
                             centeredSlides={true}
                             loop={true}
                             autoplay={{
-                                delay: 2000,
+                                delay: 2500,
                                 disableOnInteraction: false,
                               }}
                             slidesPerView={'auto'}
