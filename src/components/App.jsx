@@ -2,7 +2,8 @@ import "./App.css"
 import Background from "../image/bg.jpg"
 import InstaLogo from "../image/instagram.svg"
 import Chat from "../image/chat.svg"
-
+import Aos, { AOS } from "aos"
+import 'aos/dist/aos.css';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
@@ -32,6 +33,8 @@ import Swal from "sweetalert2";
 import db from "../firebase";
 import {getDocs,addDoc, doc, onSnapshot, collection} from "firebase/firestore"
 import Card from "./Card";
+import { useEffect } from "react"
+
 
 //  kirim data message
 
@@ -64,31 +67,36 @@ async function SendMessagePopUp(){
  
  
 
+
 function App(){
 
+    // init aos
+    useEffect(()=>{
+        Aos.init();
+    })
     return(
         <>
 
         <div className="bg bg-gradient-to-b from-sky-900 to-black">
         
             <div className="container flex justify-center items-center t-0">
-                <svg className="w-full h-full font-header absolute">
+                <svg className="w-full h-full font-header absolute" data-aos="fade-up">
                     <text x="50%" y="50%" dy=".35em" textAnchor="middle" className="animate-[stroke_5s_infinite_alternate] stroke-2 stroke-[#365FA0] text-[10vh] font-black">
                         XII MIPA 2
                     </text>
                 </svg>
-                <img src={Background} alt="Foto Bersama" className="h-[50vh]"/>
+                <img src={Background} alt="Foto Bersama" className="h-[50vh] border-2 border-red-500 bg-cover"/>
 
                 {/* glassmorphism card */}
             </div>
             <div className="container-card flex justify-center ">
-                <a className="card" href="https://instagram.com/satantaksoe">
+                <a className="card" href="https://instagram.com/satantaksoe" data-aos="fade-up">
                     <img src={InstaLogo} alt="instagram" className="w-1/4 m-1"/>
                     <h2 className="text-3xl font-bold md:text-4xl m-1">
                         Our Instagram Class
                     </h2>
                 </a>
-                <div className="card cursor-pointer" href="#" onClick={()=> SendMessagePopUp()}>
+                <div className="card cursor-pointer" href="#" data-aos="fade-up" onClick={()=> SendMessagePopUp()}>
                     <img src={Chat} alt="Anonymous Chat" className="w-1/4 m-1"/>
                     <h2 className="text-3xl font-bold md:text-4xl m-1">
                         Send Anonym Message
@@ -175,8 +183,8 @@ function App(){
                 
         {/* Menfess */}
 
-            <div className="container">
-                <div className="header ">
+            <div className="container min-h-screen">
+                <div className="header " data-aos="fade-up">
                     <h2 className="text-5xl md:text-7xl text-white font-sans font-extrabold text-center py-2">PESAN</h2>
                 </div>
                 <div className="flex justify-center py-3">

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
 import db from "../firebase";
-
+import Aos from "aos";
+import "aos/dist/aos.css"
+import aos from "aos";
 function Card() {
   const [menfessData, setMenfessData] = useState([]);
 
@@ -20,10 +22,13 @@ function Card() {
     return () => unsubscribe();
   }, []); // Empty dependency array ensures that the effect runs once after the initial render
 
+  useEffect(()=>{
+    Aos.init();
+  })
   return (
     <div>
       {menfessData.map((data) => (
-        <div key={data.id} className="p-2 my-5 w-[200px] relative bg-white/30  z-10 backdrop-filter backdrop-blur-lg rounded-2xl text-white">
+        <div key={data.id} className="p-2 my-5 w-[200px] relative bg-white/30  z-10 backdrop-filter backdrop-blur-lg rounded-2xl text-white" data-aos="flip-down">
           <span className="font-sans text-4xl md:text-5xl font-extrabold">
             From <span className="text-sky-500">{data.NameFrom}</span>
           </span>
