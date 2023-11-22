@@ -2,38 +2,15 @@ import "./App.css"
 import Background from "../image/bg.jpg"
 import InstaLogo from "../image/instagram.svg"
 import Chat from "../image/chat.svg"
-import Aos, { AOS } from "aos"
-import 'aos/dist/aos.css';
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-
-import Image_Slide1 from "../image/image1.jpeg"
-import Image_Slide2 from "../image/image2.jpg"
-import Image_Slide3 from "../image/image3.jpg"
-import Image_Slide4 from "../image/image4.jpg"
-import Image_Slide5 from "../image/image5.jpg"
-import Image_Slide6 from "../image/image6.jpg"
-import Image_Slide7 from "../image/image7.jpg"
-import Image_Slide8 from "../image/image8.jpg"
-import Image_Slide9 from "../image/image9.jpg"
-import Image_Slide10 from "../image/image10.jpg"
-import Image_Slide11 from "../image/image11.jpg"
-import Image_Slide12 from "../image/image12.jpg"
 import { useState } from "react"
-
+import Aos from "aos"
 
 import Swal from "sweetalert2";
-import db from "../firebase";
+import {database} from "../firebase";
 import {getDocs,addDoc, doc, onSnapshot, collection} from "firebase/firestore"
 import Card from "./Card";
 import { useEffect } from "react"
+import Gallery from "./Gallery"
 
 
 //  kirim data message
@@ -56,7 +33,7 @@ async function SendMessagePopUp(){
       return {NameTo : NameTo,NameFrom : NameFrom,Message : Message}
     }
   }).then(async (result)=>{
-    const DocRef =  await addDoc(collection(db,"Menfess"),{
+    const DocRef =  await addDoc(collection(database,"Menfess"),{
         NameTo: result.value.NameTo,
         NameFrom : result.value.NameFrom,
         Message : result.value.Message
@@ -105,7 +82,7 @@ function App(){
             </div>
 
             {/* galery */}
-            <div className="container">
+            {/* <div className="container">
                         <h1 className="heading text-white font-sans font-bold">WE ARE MIPA 2</h1>
                         <Swiper
                             effect={'coverflow'}
@@ -179,7 +156,9 @@ function App(){
                             <div className="swiper-pagination"></div>
                             </div>
                         </Swiper>
-                    </div> 
+                    </div>  */}
+
+                    <Gallery/>
                 
         {/* Menfess */}
 

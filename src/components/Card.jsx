@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
-import db from "../firebase";
+import {database} from "../firebase";
 import Aos from "aos";
 import "aos/dist/aos.css"
 import aos from "aos";
@@ -8,7 +8,7 @@ function Card() {
   const [menfessData, setMenfessData] = useState([]);
 
   useEffect(() => {
-    const colref = collection(db, "Menfess");
+    const colref = collection(database, "Menfess");
 
     const unsubscribe = onSnapshot(colref, (snapshot) => {
       let menfessArray = [];
