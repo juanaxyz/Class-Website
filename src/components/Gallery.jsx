@@ -65,7 +65,9 @@ function Gallery() {
           {Images.map((url) => {
             return (
               <SwiperSlide>
-                <img src={url} alt="image-slide" />
+                <img src={url} alt="image-slide" className="swiper-lazy"/>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+
               </SwiperSlide>
             );
           })}
