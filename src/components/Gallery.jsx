@@ -1,6 +1,3 @@
-import { storage } from "../firebase.js";
-import { ref, list, listAll, getDownloadURL } from "firebase/storage";
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   EffectCoverflow,
@@ -12,25 +9,52 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-function HandleClick(link) {
-  window.open(link);
-}
+import Modal from "react-modal";
+import { useState } from "react";
+const ImagesPaths = [
+  "/gallery/image (1).jpeg",
+  "/gallery/image (2).jpeg",
+  "/gallery/image (3).jpeg",
+  "/gallery/image (4).jpeg",
+  "/gallery/image (5).jpeg",
+  "/gallery/image (6).jpeg",
+  "/gallery/image (7).jpeg",
+  "/gallery/image (8).jpeg",
+  "/gallery/image (9).jpeg",
+  "/gallery/image (10).jpeg",
+  "/gallery/image (11).jpeg",
+  "/gallery/image (12).jpeg",
+  "/gallery/image (13).jpeg",
+  "/gallery/image (14).jpeg",
+  "/gallery/image (15).jpeg",
+  "/gallery/image (16).jpeg",
+  "/gallery/image (17).jpeg",
+  "/gallery/image (18).jpeg",
+  "/gallery/image (19).jpeg",
+  "/gallery/image (20).jpeg",
+  "/gallery/image (21).jpeg",
+  "/gallery/image (22).jpeg",
+  "/gallery/image (23).jpeg",
+  "/gallery/image (24).jpeg",
+  "/gallery/image (25).jpg",
+  "/gallery/image (26).jpg",
+];
 
 function Gallery() {
-  const [Images, setImages] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  const ImageRef = ref(storage, "Images/");
-  useEffect(() => {
-    listAll(ImageRef).then((res) => {
-      res.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImages((prev) => [...prev, url]);
-        });
-      });
-    });
-  });
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setModalIsOpen(true);
+    
+  };
 
+  const closeModal = () => {
+    setSelectedImage(null);
+    setModalIsOpen(false);
+    
+  };
   return (
     <>
       <div className="container">
@@ -62,13 +86,20 @@ function Gallery() {
           modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
           className="swiper_container"
         >
-          {Images.map((url) => {
+          {ImagesPaths.map((url, index) => {
+            // console.log(url);
             return (
-              <SwiperSlide>
-                <img src={url} alt="image-slide" className="swiper-lazy"/>
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-
-              </SwiperSlide>
+              <>
+                <SwiperSlide key={index}>
+                  <img
+                    src={url}
+                    alt={`Image ${index + 1}`}
+                    className="swiper-lazy"
+                    onClick={() => openModal(url)}
+                  />
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </SwiperSlide>
+              </>
             );
           })}
 
@@ -81,6 +112,68 @@ function Gallery() {
             </div>
           </div>
         </Swiper>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Image Modal"
+          style={{
+            overlay: {
+              zIndex: 1000, // Atur nilai zIndex overlay modal
+              
+            },
+            content: {
+              backgroundColor:"rgba(42, 53, 71,.8)",
+              height:"fit-content",
+              borderRadius:"10px",
+              margin:"auto",
+              display:"flex",
+              flexDirection:"column",
+              justifyContent:"center",
+              alignItems:"center",
+                      
+            },}}
+        >
+          {selectedImage && (
+            <img
+              src={selectedImage}
+              alt="Selected Image"
+              style={{
+                width:"100%",
+                height:"auto",
+                marginBottom:"15px",
+                borderRadius:"10px"
+              }}
+            />
+          )}
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+
+          <button onClick={closeModal} style={{
+            alignSelf:"center",
+            backgroundColor: "white",
+            border:"none",
+            color:"gray",
+            textAlign: "center",
+            textDecoration: "none",
+            fontSize:"16px",
+            padding:"5px",
+            borderRadius:"5px",
+            boxShadow:" -1px 10px 28px -4px rgba(0,0,0,0.75)"
+            }}>CLOSE</button>
+             <a href={selectedImage} download>
+          <button style={{ flex: '1', marginLeft: '8px',alignSelf:"center",
+            backgroundColor: "white",
+            border:"none",
+            color:"gray",
+            textAlign: "center",
+            textDecoration: "none",
+            fontSize:"16px",
+            padding:"5px",
+            borderRadius:"5px",
+            boxShadow:" -1px 10px 28px -4px rgba(0,0,0,0.75)" }}>Download</button>
+        </a>
+        </div>
+        </Modal>
       </div>
     </>
   );
